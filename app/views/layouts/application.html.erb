@@ -16,6 +16,14 @@
   </head>
 
   <body>
+  <div>
+    <% if @current_user != nil %>
+      <a href="/user_sign_out">Sign out </a>
+    <% end %> 
+  </div>
+  <div>
+   <a href="/">Parties</a>
+  </div>
     <%= yield %>
   </body>
 </html>

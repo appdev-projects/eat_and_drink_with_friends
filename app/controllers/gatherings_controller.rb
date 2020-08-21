@@ -53,6 +53,6 @@ class GatheringsController < ApplicationController
 
     the_gathering.destroy
 
-    redirect_to("/gatherings", { :notice => "Gathering deleted successfully."} )
+    redirect_back({:fallback_location => "/", :notice => "Gathering deleted successfully."})
   end
 end

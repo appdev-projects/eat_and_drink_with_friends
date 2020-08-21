@@ -47,7 +47,11 @@
 
     <ul>
     <% @the_party.gatherings.each do |guest| %>
-      <li> <%= guest.user.first_name %> </li>
+        <% if guest.user_id == @current_user.id %>
+          I am attending <a href="/delete_gathering/<%=guest.id%>">(Leave Party)</a>
+        <%else%>
+          <li> <%= guest.user.first_name %> </li>
+        <%end%>
     <%end%>
     </ul>
 
@@ -164,7 +168,7 @@
         <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
       
         <button>
-          Create drink
+          Bring drink
         </button>
       </div>
     </form>

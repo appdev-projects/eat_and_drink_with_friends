@@ -68,10 +68,6 @@
     <table>
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
           Date
         </th>
 
@@ -91,21 +87,21 @@
         Address
       </th>
 
+      <th>
+      Attending?
+    </th>
+
         
       </tr>
 
       <% @list_of_parties.each do |a_party| %>
       <tr>
         <td>
-          <%= a_party.id %>
+          <%= a_party.date.strftime("%A, %b %d") %>
         </td>
 
         <td>
-          <%= a_party.date %>
-        </td>
-
-        <td>
-          <%= a_party.time %>
+          <%= a_party.time.strftime("%l:%m %p") %>
         </td>
 
         <td>
@@ -120,7 +116,29 @@
       <%= a_party.address %>
     </td>
 
-       
+  
+    <%attendance = Gathering.all.where(:party_id => a_party.id).where(:user_id => @current_user.id).first %>
+    <% if attendance != nil %>
+    <td>
+        I am attending <a href="/delete_gathering/<%=attendance.id%>">(Leave Party)</a>
+    </td>
+    <% else %> 
+    <td>
+    <form action="/insert_gathering" method="post">
+    <div>
+      <input type="hidden" id="party_id_box" name="query_party_id" value="<%= a_party.id %>">
+  
+      <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
+      
+      <button>
+        Attend Party
+      </button>
+    </div>
+  </form>
+    </td>
+    <% end %>
+
+
 
         <td>
           <a href="/parties/<%= a_party.id %>">
