@@ -85,6 +85,9 @@
           Food 
         </th> 
         <th>
+          Description
+        </th> 
+        <th>
           Brought by
         </th>
       <tr> 
@@ -94,8 +97,16 @@
         <%= food.name %>
       </td>
       <td>
+      <%= food.description %>
+      </td>
+      <td>
          <%=food.user.first_name %> 
       </td>
+      <% if food.user.id == @current_user.id %>
+        <td>
+        <a href="/delete_food/<%=food.id%>">Delete Food</a>
+        </td>
+      <% end %>
       </tr>
       <% end %>
     </table>
@@ -134,7 +145,7 @@
     <table> 
       <tr> 
         <th>
-          Food 
+          Drink
         </th> 
         <th>
           Brought by
@@ -148,6 +159,11 @@
       <td>
          <%=drink.user.first_name %> 
       </td>
+      <% if drink.user.id == @current_user.id %>
+      <td>
+      <a href="/delete_drink/<%=drink.id%>">Delete Drink</a>
+      </td>
+      <% end %>
       </tr>
       <% end %>
     </table>
@@ -230,12 +246,13 @@
         Update party
       </button>
     </form>
-
+    <% if @the_party.user_id = @current_user.id %>
     <div>
         <a href="/delete_party/<%= @the_party.id %>">
           Delete party
         </a>
     </div>
+    <% end %>
   </div>
 </div>
 

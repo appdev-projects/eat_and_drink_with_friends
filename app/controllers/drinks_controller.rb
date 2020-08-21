@@ -53,6 +53,6 @@ class DrinksController < ApplicationController
 
     the_drink.destroy
 
-    redirect_to("/drinks", { :notice => "Drink deleted successfully."} )
+    redirect_back({:fallback_location => "/", :notice => "Gathering deleted successfully."})
   end
 end
