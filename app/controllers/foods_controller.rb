@@ -26,9 +26,9 @@ class FoodsController < ApplicationController
 
     if the_food.valid?
       the_food.save
-      redirect_to("/foods", { :notice => "Food created successfully." })
+      redirect_to("/parties/#{the_food.party_id}", { :notice => "Food created successfully." })
     else
-      redirect_to("/foods", { :notice => "Food failed to create successfully." })
+      redirect_to("/parties/#{the_food.party_id}", { :notice => "Food failed to create successfully." })
     end
   end
 
@@ -43,9 +43,9 @@ class FoodsController < ApplicationController
 
     if the_food.valid?
       the_food.save
-      redirect_to("/foods/#{the_food.id}", { :notice => "Food updated successfully."} )
+      redirect_to("/parties/#{the_food.party_id}", { :notice => "Food updated successfully."} )
     else
-      redirect_to("/foods/#{the_food.id}", { :alert => "Food failed to update successfully." })
+      redirect_to("/parties/#{the_food.party_id}", { :alert => "Food failed to update successfully." })
     end
   end
 

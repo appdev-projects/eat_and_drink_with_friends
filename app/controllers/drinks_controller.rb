@@ -25,9 +25,9 @@ class DrinksController < ApplicationController
 
     if the_drink.valid?
       the_drink.save
-      redirect_to("/drinks", { :notice => "Drink created successfully." })
+      redirect_to("/parties/#{the_drink.party_id}", { :notice => "Drink created successfully." })
     else
-      redirect_to("/drinks", { :notice => "Drink failed to create successfully." })
+      redirect_to("/parties/#{the_drink.party_id}", { :notice => "Drink failed to create successfully." })
     end
   end
 
@@ -41,9 +41,9 @@ class DrinksController < ApplicationController
 
     if the_drink.valid?
       the_drink.save
-      redirect_to("/drinks/#{the_drink.id}", { :notice => "Drink updated successfully."} )
+      redirect_to("/parties/#{the_drink.party_id}", { :notice => "Drink updated successfully."} )
     else
-      redirect_to("/drinks/#{the_drink.id}", { :alert => "Drink failed to update successfully." })
+      redirect_to("/parties/#{the_drink.party_id}", { :alert => "Drink failed to update successfully." })
     end
   end
 

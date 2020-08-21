@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get("/", { :controller => "parties", :action => "index" })
 
   # Routes for the Gathering resource:
 
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post("/insert_gathering", { :controller => "gatherings", :action => "create" })
           
   # READ
-  get("/gatherings", { :controller => "gatherings", :action => "index" })
+  #get("/gatherings", { :controller => "gatherings", :action => "index" })
   
   get("/gatherings/:path_id", { :controller => "gatherings", :action => "show" })
   
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   post("/insert_drink", { :controller => "drinks", :action => "create" })
           
   # READ
-  get("/drinks", { :controller => "drinks", :action => "index" })
+  #get("/drinks", { :controller => "drinks", :action => "index" })
   
   get("/drinks/:path_id", { :controller => "drinks", :action => "show" })
   
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   post("/insert_food", { :controller => "foods", :action => "create" })
           
   # READ
-  get("/foods", { :controller => "foods", :action => "index" })
+  #get("/foods", { :controller => "foods", :action => "index" })
   
   get("/foods/:path_id", { :controller => "foods", :action => "show" })
   

@@ -22,6 +22,8 @@ class PartiesController < ApplicationController
     the_party.date = params.fetch("query_date")
     the_party.time = params.fetch("query_time")
     the_party.description = params.fetch("query_description")
+    the_party.user_id = @current_user.id
+    the_party.address = params.fetch("address")
 
     if the_party.valid?
       the_party.save
@@ -38,6 +40,8 @@ class PartiesController < ApplicationController
     the_party.date = params.fetch("query_date")
     the_party.time = params.fetch("query_time")
     the_party.description = params.fetch("query_description")
+    the_party.user_id = params.fetch("party_host")
+    the_party.address = params.fetch("address")
 
     if the_party.valid?
       the_party.save

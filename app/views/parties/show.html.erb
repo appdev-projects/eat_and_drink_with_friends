@@ -3,22 +3,7 @@
     <h1>
       Party #<%= @the_party.id %> details
     </h1>
-
-    <div>
-      <div>
-        <a href="/parties">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_party/<%= @the_party.id %>">
-          Delete party
-        </a>
-      </div>
-    </div>
-
-    <dl>
+      <dl>
       <dt>
         Date
       </dt>
@@ -41,19 +26,148 @@
       </dd>
 
       <dt>
-        Created at
+        Address
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_party.created_at) %> ago
+        <%= @the_party.address %>
       </dd>
 
       <dt>
-        Updated at
+        Host
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_party.updated_at) %> ago
+        <%= @the_party.user.first_name %>
       </dd>
     </dl>
+
+    <h2>
+    Guests
+   
+    </h2>
+
+    <ul>
+    <% @the_party.gatherings.each do |guest| %>
+      <li> <%= guest.user.first_name %> </li>
+    <%end%>
+    </ul>
+
+    <h3>
+      Attend Party
+    </h3>
+
+    <form action="/insert_gathering" method="post">
+      <div>
+        <input type="hidden" id="party_id_box" name="query_party_id" value="<%= @the_party.id %>">
+    
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
+
+        <input type="checkbox" id="rsvp_box" name="query_rsvp" value="1">
+
+        <label for="rsvp_box">Rsvp</label>
+        
+        <button>
+          Attend Party
+        </button>
+      </div>
+    </form>
+
+    <h2>
+    Food
+    </h2>
+
+    <table> 
+      <tr> 
+        <th>
+          Food 
+        </th> 
+        <th>
+          Brought by
+        </th>
+      <tr> 
+      <% @the_party.foods.each do |food| %>
+      <tr>
+      <td>
+        <%= food.name %>
+      </td>
+      <td>
+         <%=food.user.first_name %> 
+      </td>
+      </tr>
+      <% end %>
+    </table>
+    <h2>
+      Add a new food
+    </h2>
+
+    <form action="/insert_food" method="post">
+      <div>
+        <label for="name_box">
+          Food
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+     
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+     
+        <input type="hidden" id="party_id_box" name="query_party_id" value="<%= @the_party.id %>">
+  
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
+     
+        <button>
+          Bring food
+        </button>
+      </div>
+    </form>
+
+
+    <h2>
+    Drinks
+    </h2>
+    <table> 
+      <tr> 
+        <th>
+          Food 
+        </th> 
+        <th>
+          Brought by
+        </th>
+      <tr> 
+      <% @the_party.drinks.each do |drink| %>
+      <tr>
+      <td>
+        <%= drink.name %>
+      </td>
+      <td>
+         <%=drink.user.first_name %> 
+      </td>
+      </tr>
+      <% end %>
+    </table>
+    <h2>
+      Add a new drink
+    </h2>
+
+    <form action="/insert_drink" method="post">
+      <div>
+        <label for="name_box">
+         Drink
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+
+        <input type="hidden" id="party_id_box" name="query_party_id" value="<%= @the_party.id %>">
+  
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
+      
+        <button>
+          Create drink
+        </button>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -91,10 +205,33 @@
         <textarea id="description_box" name="query_description"><%= @the_party.description %></textarea>
       </div>
 
+      <div>
+      <label for="party_host">
+        Party host
+      </label>
+
+      <input type="hidden" id="party_host" name="party_host" value="<%= @the_party.user_id %>">
+    </div>
+
+    <div>
+      <label for="address">
+        Address
+      </label>
+
+      <input type="text" id="address" name="address" value = "<%= @the_party.address %>">
+    </div>
+
+
       <button>
         Update party
       </button>
     </form>
+
+    <div>
+        <a href="/delete_party/<%= @the_party.id %>">
+          Delete party
+        </a>
+    </div>
   </div>
 </div>
 

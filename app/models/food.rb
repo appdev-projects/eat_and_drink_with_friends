@@ -11,4 +11,6 @@
 #  user_id     :integer
 #
 class Food < ApplicationRecord
+    belongs_to(:user, { :required => false, :class_name => "User", :foreign_key => "user_id" })
+    belongs_to(:party, { :required => false, :class_name => "Party", :foreign_key => "party_id" })
 end

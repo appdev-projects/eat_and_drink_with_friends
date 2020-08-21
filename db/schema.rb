@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2020_08_21_174752) do
     t.date "date"
     t.time "time"
     t.text "description"
+    t.string "address"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

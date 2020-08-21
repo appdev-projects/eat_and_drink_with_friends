@@ -25,9 +25,9 @@ class GatheringsController < ApplicationController
 
     if the_gathering.valid?
       the_gathering.save
-      redirect_to("/gatherings", { :notice => "Gathering created successfully." })
+      redirect_to("/parties/#{the_gathering.party_id}", { :notice => "Gathering created successfully." })
     else
-      redirect_to("/gatherings", { :notice => "Gathering failed to create successfully." })
+      redirect_to("/parties/#{the_gathering.party_id}", { :notice => "Gathering failed to create successfully." })
     end
   end
 
@@ -41,9 +41,9 @@ class GatheringsController < ApplicationController
 
     if the_gathering.valid?
       the_gathering.save
-      redirect_to("/gatherings/#{the_gathering.id}", { :notice => "Gathering updated successfully."} )
+      redirect_to("/parties/#{the_gathering.party_id}", { :notice => "Gathering updated successfully."} )
     else
-      redirect_to("/gatherings/#{the_gathering.id}", { :alert => "Gathering failed to update successfully." })
+      redirect_to("/parties/#{the_gathering.party_id}", { :alert => "Gathering failed to update successfully." })
     end
   end
 
