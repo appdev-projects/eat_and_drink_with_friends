@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Drink #<%= @the_drink.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/drinks">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_drink/<%= @the_drink.id %>">
+          Delete drink
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_drink.name %>
+      </dd>
+
+      <dt>
+        Party
+      </dt>
+      <dd>
+        <%= @the_drink.party_id %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_drink.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_drink.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_drink.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit drink
+    </h2>
+
+    <form action="/modify_drink/<%= @the_drink.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_drink.name %>">
+      </div>
+
+      <div>
+        <label for="party_id_box">
+          Party
+        </label>
+
+        <input type="text" id="party_id_box" name="query_party_id" value="<%= @the_drink.party_id %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_drink.user_id %>">
+      </div>
+
+      <button>
+        Update drink
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

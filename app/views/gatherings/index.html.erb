@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      List of all gatherings
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new gathering
+    </h2>
+
+    <form action="/insert_gathering" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="party_id_box">
+          Party
+        </label>
+
+        <input type="text" id="party_id_box" name="query_party_id">
+      </div>
+
+      <div>
+        <input type="checkbox" id="rsvp_box" name="query_rsvp" value="1">
+
+        <label for="rsvp_box">Rsvp</label>
+      </div>
+
+      <button>
+        Create gathering
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Party
+        </th>
+
+        <th>
+          Rsvp
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_gatherings.each do |a_gathering| %>
+      <tr>
+        <td>
+          <%= a_gathering.id %>
+        </td>
+
+        <td>
+          <%= a_gathering.user_id %>
+        </td>
+
+        <td>
+          <%= a_gathering.party_id %>
+        </td>
+
+        <td>
+          <%= a_gathering.rsvp %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_gathering.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_gathering.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/gatherings/<%= a_gathering.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

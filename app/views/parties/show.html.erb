@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Party #<%= @the_party.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/parties">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_party/<%= @the_party.id %>">
+          Delete party
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Date
+      </dt>
+      <dd>
+        <%= @the_party.date %>
+      </dd>
+
+      <dt>
+        Time
+      </dt>
+      <dd>
+        <%= @the_party.time %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_party.description %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_party.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_party.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit party
+    </h2>
+
+    <form action="/modify_party/<%= @the_party.id %>"  method="post" >
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date" value="<%= @the_party.date %>">
+      </div>
+
+      <div>
+        <label for="time_box">
+          Time
+        </label>
+
+        <input type="time" id="time_box" name="query_time" value="<%= @the_party.time %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description"><%= @the_party.description %></textarea>
+      </div>
+
+      <button>
+        Update party
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

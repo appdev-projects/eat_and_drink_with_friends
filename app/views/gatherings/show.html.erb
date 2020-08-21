@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Gathering #<%= @the_gathering.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/gatherings">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_gathering/<%= @the_gathering.id %>">
+          Delete gathering
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_gathering.user_id %>
+      </dd>
+
+      <dt>
+        Party
+      </dt>
+      <dd>
+        <%= @the_gathering.party_id %>
+      </dd>
+
+      <dt>
+        Rsvp
+      </dt>
+      <dd>
+        <%= @the_gathering.rsvp %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_gathering.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_gathering.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit gathering
+    </h2>
+
+    <form action="/modify_gathering/<%= @the_gathering.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_gathering.user_id %>">
+      </div>
+
+      <div>
+        <label for="party_id_box">
+          Party
+        </label>
+
+        <input type="text" id="party_id_box" name="query_party_id" value="<%= @the_gathering.party_id %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="rsvp_box" name="query_rsvp" value="1" <%= "checked" if @the_gathering.rsvp %>>
+
+        <label for="rsvp_box">
+            Rsvp
+        </label>
+      </div>
+
+      <button>
+        Update gathering
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
