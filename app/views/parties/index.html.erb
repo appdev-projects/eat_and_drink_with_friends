@@ -40,10 +40,6 @@
       </div>
 
       <div>
-        <label for="party_host">
-          Party host
-        </label>
-
         <input type="hidden" id="party_host" name="party_host" value="#{@current_user.id}">
       </div>
 
@@ -122,7 +118,15 @@
     <td>
         I am attending <a href="/delete_gathering/<%=attendance.id%>">(Leave Party)</a>
     </td>
+    <td>
+    <div>
+        <% if attendance.rsvp == true %>
+          I have rsvp'ed 
+          <% else %> 
+          I still need to rsvp
+          <% end %> 
     <% else %> 
+    <div>
     <td>
     <form action="/insert_gathering" method="post">
     <div>

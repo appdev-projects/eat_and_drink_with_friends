@@ -57,15 +57,47 @@
 
     <h3>
       Attend Party
+      
     </h3>
+      <% if @the_party.gatherings.exists?(:user_id => @current_user.id) && @the_party.gatherings.where(:user_id => @current_user).first.rsvp == false %>
+      
+      <form action="/modify_gathering/<%=@the_party.gatherings.where(:user_id => @current_user.id).first.id%>" method="post">
+      <div>
+        <input type="hidden" id="party_id_box" name="query_party_id" value="<%= @the_party.id %>">
+    
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
+  
+        <input type="hidden" id="rsvp_box" name="query_rsvp" value= true >
+        
+        <button>
+          RSVP
+        </button>
+      </div>
+    </form>
+  <% elsif @the_party.gatherings.exists?(:user_id => @current_user.id)  %>
+  
+  <form action="/modify_gathering/<%=@the_party.gatherings.where(:user_id => @current_user.id).first.id%>" method="post">
+  <div>
+    <input type="hidden" id="party_id_box" name="query_party_id" value="<%= @the_party.id %>">
 
-    <form action="/insert_gathering" method="post">
+    <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
+
+    <input type="hidden" id="rsvp_box" name="query_rsvp" value= false >
+    
+    <button>
+      UN Rsvp
+    </button>
+  </div>
+</form>
+    <% else %> 
+    
+  <form action="/insert_gathering" method="post">
       <div>
         <input type="hidden" id="party_id_box" name="query_party_id" value="<%= @the_party.id %>">
     
         <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
 
-        <input type="checkbox" id="rsvp_box" name="query_rsvp" value="1">
+        <input type="checkbox" id="rsvp_box" name="query_rsvp" value = true >
 
         <label for="rsvp_box">Rsvp</label>
         
@@ -74,6 +106,7 @@
         </button>
       </div>
     </form>
+    <% end %>
 
     <h2>
     Food
