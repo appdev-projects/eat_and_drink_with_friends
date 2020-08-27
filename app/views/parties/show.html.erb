@@ -1,21 +1,21 @@
 <div>
   <div>
     <h1>
-      Party #<%= @the_party.id %> details
+      <%= @the_party.user.first_name %>'s party
     </h1>
       <dl>
       <dt>
         Date
       </dt>
       <dd>
-        <%= @the_party.date %>
+        <%= @the_party.date.strftime("%A, %b %d") %>
       </dd>
 
       <dt>
         Time
       </dt>
       <dd>
-        <%= @the_party.time %>
+        <%= @the_party.time.strftime(" %w:%y %p") %>
       </dd>
 
       <dt>
@@ -48,9 +48,17 @@
     <ul>
     <% @the_party.gatherings.each do |guest| %>
         <% if guest.user_id == @current_user.id %>
-          I am attending <a href="/delete_gathering/<%=guest.id%>">(Leave Party)</a>
-        <%else%>
-          <li> <%= guest.user.first_name %> </li>
+        <li>
+          Me <a href="/delete_gathering/<%=guest.id%>">(Leave Party)</a>
+        </li>
+        <%elsif guest.rsvp == true%>
+
+          <li> <%= guest.user.first_name %> has Rsvp'ed  </li>
+        
+        <% else %>
+
+        <li> <%= guest.user.first_name %> has not Rsvp'ed  </li>
+
         <%end%>
     <%end%>
     </ul>
@@ -227,8 +235,9 @@
 <hr>
 
 
+<% if @the_party.user_id == @current_user.id %>
 <div>
-  <div>
+<div>
     <h2>
       Edit party
     </h2>
@@ -279,7 +288,6 @@
         Update party
       </button>
     </form>
-    <% if @the_party.user_id = @current_user.id %>
     <div>
         <a href="/delete_party/<%= @the_party.id %>">
           Delete party
